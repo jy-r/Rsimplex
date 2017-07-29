@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 library("knitr")
 
 A <- matrix(c(15,2,5,12,13
@@ -71,4 +71,3 @@ Rsimplex <- function(A,b,C,log=TRUE){
   invisible(output)
 }
 
->>>>>>> dcce0750d25a3588b80a3e5acb64416a55408bec
