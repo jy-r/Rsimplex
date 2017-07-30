@@ -5,11 +5,11 @@ b <- c(28,21)
 constrains <- c(FALSE, TRUE) #Contrains >= are 1, <= are 0
 C <- -c(77,27,56)
 
-(sol <- Rsimplex(A,b,C,constrains, log = FALSE))
+(sol <- Rsimplex(A,b,C,constrains,max=TRUE, log = FALSE))
 (sol <- Rsimplex(A,b,C,constrains, log = TRUE))
 (sol <- Rsimplex(A,b,C,c(FALSE,FALSE), log = TRUE))
 
-Rsimplex <- function(A,b,C, constrains=c(FALSE), log=TRUE){
+Rsimplex <- function(A,b,C, constrains=c(FALSE),max=TRUE, log=TRUE){
   #check Input
   if(dim(A)[1]!=length(b)){print("Dimensions of matrix A doesnt correspond to vector b")
     stop()}
@@ -50,7 +50,6 @@ repeat{
       print("Frist phase is done")
       A<- A[,1:(dim(A)[2]-dim(Y)[2])]
       z <- z[1:(length(z)-dim(Y)[2])]
-      
       break}
     if(all(b<0)){
       print("Unbounded function")
@@ -61,7 +60,8 @@ repeat{
     #select key
     key.col <- which.max(zy)
     t <- b/A[,key.col]
-    key.row <- which.min(t[t>0])
+    t[t<0] <- NA
+    key.row <- which.min(t)
     #logs
     if(isTRUE(log)){
       print(kable(round(rbind(cbind(A,b),z=c(z,z0),zy=c(zy,zy0)),2)))
@@ -84,8 +84,22 @@ repeat{
 }
   
 repeat{
-    #Checking for end
-    if(all(z>=0)){
+  #min/max
+  if(max==TRUE){
+    check.opt<-z>=0
+    key.col <- which.min(z)
+    t <- b/A[,key.col]
+    t[t<0] <- NA
+    key.row <- which.min(t)
+  }else{
+    check.opt<-z<=0
+    key.col <- which.max(z)
+    t <- b/A[,key.col]
+    t[t<0] <- NA
+    key.row <- which.min(t)
+  }
+  #Check for end
+    if(all(check.opt)){
       print(kable(round(rbind(cbind(A,b),z=c(z,z0)),2)))
       print(paste("Optimal solution found:",round(z0,2),"Values:"))
       print(paste0(rownames(A),"=",round(b,3)))
@@ -98,17 +112,13 @@ repeat{
       print("Unbounded function")
       break}
     
-    key.col <- which.min(z)
-    t <- b/A[,key.col]
-    key.row <- which.min(t[t>0])
-    
+  #log on/off 
     if(isTRUE(log)){
       print(kable(round(rbind(cbind(A,b),z=c(z,z0)),2)))
       print(paste("key row: ",key.row,"| key column: ",key.col))
     }
-    
     rownames(A)[key.row]<- paste0("x",key.col)
-    
+  #calculate
     b[key.row] <- b[key.row]/A[key.row,key.col] 
     A[key.row,] <- A[key.row,]/A[key.row,key.col] 
     for(i in (1:dim(A)[1])[-key.row]){
