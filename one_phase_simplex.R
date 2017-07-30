@@ -7,6 +7,7 @@ C <- -c(77,27,56)
 
 (sol <- Rsimplex(A,b,C,constrains, log = FALSE))
 (sol <- Rsimplex(A,b,C,constrains, log = TRUE))
+(sol <- Rsimplex(A,b,C,c(FALSE,FALSE), log = TRUE))
 
 Rsimplex <- function(A,b,C, constrains=c(FALSE), log=TRUE){
   #check Input
