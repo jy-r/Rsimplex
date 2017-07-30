@@ -5,7 +5,7 @@ b <- c(28,21)
 constrains <- c(FALSE, TRUE) #Contrains >= are 1, <= are 0
 C <- -c(77,27,56)
 
-(sol <- Rsimplex(A,b,C,constrains, log = FALSE))
+(sol <- Rsimplex(A,b,C,constrains,max=TRUEm, log = FALSE))
 #------------------
 
 #Example2
@@ -41,7 +41,6 @@ C <- -c(5,1,3)
 #Unbounded function 
 #-----------------
 
-
 #Example 5
 #-----------------
 A <- matrix(c(2,2,3,1,2,2),nrow=2,byrow=TRUE)
@@ -54,7 +53,15 @@ C <- -c(63,27,56)
 #-----------------
 
 
+#Example 1
+#------------------
+A <- matrix(c(2,2,3,1,3,2,2,2,3,1,3,2),nrow=4,byrow=TRUE)
+b <- c(28,21,15,36)
+constrains <- c(FALSE, TRUE, FALSE, TRUE) #Contrains >= are 1, <= are 0
+C <- -c(77,27,56)
 
+(sol <- Rsimplex(A,b,C,constrains,max=TRUE, log = FALSE))
+#------------------
 
 
 
