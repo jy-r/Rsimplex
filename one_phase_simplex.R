@@ -1,9 +1,9 @@
-
 library("knitr")
 
 A <- matrix(c(15,2,5,12,13
               ,0,5,0,3,4),nrow=2,byrow=TRUE)
 b <- c(2500,3020)
+constrains <- c(1, 0)
 
 C <- -c(8,2,5, 8, 3)
 
