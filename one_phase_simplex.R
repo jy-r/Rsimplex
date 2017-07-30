@@ -45,12 +45,17 @@ Rsimplex <- function(A,b,C, constrains=c(FALSE),max=TRUE, log=TRUE){
   
 if(any(constrains)){
 repeat{
-    if(all(zy<=0)){
+    if(all(zy<=0)&(zy0==0)){
       print(kable(round(rbind(cbind(A,b),z=c(z,z0),zy=c(zy,zy0)),2)))
       print("Frist phase is done")
       A<- A[,1:(dim(A)[2]-dim(Y)[2])]
       z <- z[1:(length(z)-dim(Y)[2])]
-      break}
+      break
+      }else if(all(zy<=0)){
+        stop("Doenst have a solution")
+      }
+        
+        
     if(all(b<0)){
       print("Unbounded function")
       break}
@@ -130,9 +135,10 @@ repeat{
     
   
   
+  
+}
   output<- list(simplex.table=round(rbind(cbind(A,b),z=c(z,z0)),2),
                 obj=z0)
   invisible(output)
-}
 }
 
