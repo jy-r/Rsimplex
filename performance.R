@@ -1,8 +1,8 @@
-A <- matrix(c(2,1,1,1,2,1),nrow=2,byrow=TRUE)
-b <- c(25,8)
+A <- matrix(rnorm(800),nrow=100,byrow=TRUE)
+b <- runif(100,30,45)
 constrains <- c(FALSE, FALSE) #Contrains >= are 1, <= are 0
-C <- -c(24,20,14)
-C2 <- c(24,20,14)
+C <- -runif(8,0,10)
+C2 <- -C
 
 
 library(boot)
