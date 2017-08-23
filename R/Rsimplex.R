@@ -12,11 +12,6 @@
 #' constrains <- c(TRUE, TRUE)
 #' C <- c(8,2,5)
 #' (sol <- Rsimplex(A,b,C,constrains,max=FALSE, log = TRUE))
-
-
-
-
-
 Rsimplex <- function(A,b,C, constrains=c(FALSE),max=TRUE, log=TRUE){
   C = -C
   require(knitr)
