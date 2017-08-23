@@ -6,6 +6,7 @@
 #' @param constrains logical vector of constrain types TRUE >=, FALSE <=
 #' @param max logical, default TRUE
 #' @param log print iterations, default TRUE
+#' @keywords simplex, linear programing
 #' @import knitr
 #' @export Rsimplex
 #' @examples 

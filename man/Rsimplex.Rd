@@ -27,3 +27,6 @@ constrains <- c(TRUE, TRUE)
 C <- c(8,2,5)
 (sol <- Rsimplex(A,b,C,constrains,max=FALSE, log = TRUE))
 }
+\keyword{linear}
+\keyword{programing}
+\keyword{simplex,}
