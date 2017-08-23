@@ -54,7 +54,12 @@ repeat{
       }else if(all(zy<=0)){
         stop("Doenst have a solution")
       }
-        
+      
+      #select key
+    key.col <- which.max(zy)
+    t <- b/A[,key.col]
+    t[t<0] <- NA
+    key.row <- which.min(t)   
         
     if(all(b<0)){
       print("Unbounded function")
@@ -62,11 +67,7 @@ repeat{
     if(all(A[,key.col]<0)){
       print("Unbounded function")
       break}
-    #select key
-    key.col <- which.max(zy)
-    t <- b/A[,key.col]
-    t[t<0] <- NA
-    key.row <- which.min(t)
+   
     #logs
     if(isTRUE(log)){
       print(kable(round(rbind(cbind(A,b),z=c(z,z0),zy=c(zy,zy0)),2)))
