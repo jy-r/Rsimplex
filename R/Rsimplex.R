@@ -6,6 +6,8 @@
 #' @param constrains logical vector of constrain types TRUE >=, FALSE <=
 #' @param max logical, default TRUE
 #' @param log print iterations, default TRUE
+#' @import knitr
+#' @export Rsimplex
 #' @examples 
 #' A <- matrix(c(1,0,1,2,1,1),nrow=2,byrow=TRUE)
 #' b <- c(24,30)
@@ -14,7 +16,6 @@
 #' (sol <- Rsimplex(A,b,C,constrains,max=FALSE, log = TRUE))
 Rsimplex <- function(A,b,C, constrains=c(FALSE),max=TRUE, log=TRUE){
   C = -C
-  require(knitr)
   #check Input
   if(dim(A)[1]!=length(b)){print("Dimensions of matrix A doesnt correspond to vector b")
     stop()}
