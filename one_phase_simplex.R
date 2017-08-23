@@ -9,7 +9,7 @@ C <- -c(77,27,56)
 (sol <- Rsimplex(A,b,C,constrains, log = TRUE))
 (sol <- Rsimplex(A,b,C,c(FALSE,FALSE), log = TRUE))
 
-Rsimplex <- function(A,b,C, constrains=c(FALSE),max=TRUE, log=TRUE){
+Rsimplex <- function(A,b,-C, constrains=c(FALSE),max=TRUE, log=TRUE){
   #check Input
   if(dim(A)[1]!=length(b)){print("Dimensions of matrix A doesnt correspond to vector b")
     stop()}
