@@ -6,7 +6,7 @@ Implementation of simplex method in R. This implementation is not computationall
 Package can be installed by:
 
 ```
-devtools::install_github("jy-r/Rsimplex")]
+devtools::install_github("jy-r/Rsimplex")
 ```
 
 ## Guide
